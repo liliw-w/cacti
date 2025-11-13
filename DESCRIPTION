@@ -1,0 +1,25 @@
+Package: cacti
+Title: CACTI: Chromatin QTL Mapping with Peak Windows
+Version: 0.0.0.9000
+Authors@R: 
+    person("Lili", "Wang", , "liliw1@uchicago.edu", role = c("aut", "cre"))
+Description: Implements the CACTI peak-window method for multi-peak
+    chromatin QTL mapping.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports: 
+    ACAT,
+    data.table,
+    dplyr,
+    qvalue,
+    readr,
+    stringr,
+    tibble,
+    tidyr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
