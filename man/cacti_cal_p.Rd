@@ -10,7 +10,7 @@ cacti_cal_p(
   file_peak_group,
   file_pheno_cov_residual,
   file_p_peak_group,
-  dir_pco = "R/pco",
+  dir_pco = system.file("pco", package = "cacti"),
   min_peaks = 2
 )
 }

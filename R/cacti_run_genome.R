@@ -65,7 +65,7 @@
 #'   chrs = "chr5",
 #'   qtl_files = qtl_file,
 #'   out_prefix = out_prefix,
-#'   dir_pco = "R/pco",
+#'   dir_pco = system.file("pco", package = "cacti"),
 #'   min_peaks = 2
 #'   file_fdr_out = file.path(tempdir(), "cacti_fdr_chr5.txt.gz")
 #' )
@@ -80,7 +80,7 @@ cacti_run_genome <- function(
     chrs,
     qtl_files,
     out_prefix,
-    dir_pco   = "R/pco",
+    dir_pco = system.file("pco", package = "cacti"),
     min_peaks = 2,
     file_fdr_out   = NULL
 ) {

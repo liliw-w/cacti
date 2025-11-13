@@ -12,7 +12,7 @@ cacti_run_chr(
   chr,
   qtl_file,
   out_prefix,
-  dir_pco = "R/pco",
+  dir_pco = system.file("pco", package = "cacti"),
   min_peaks = 2
 )
 }
@@ -95,7 +95,7 @@ res <- cacti_run_chr(
   chr = "chr5",
   qtl_file = qtl_file,
   out_prefix = out_prefix,
-  dir_pco = "R/pco",
+  dir_pco = system.file("pco", package = "cacti"),
   min_peaks = 2
 )
 }

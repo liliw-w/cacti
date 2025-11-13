@@ -144,7 +144,6 @@ res_single_chr <- cacti_run_chr(
   chr             = "chr5",
   qtl_file        = qtl_file,
   out_prefix      = out_prefix,
-  dir_pco         = "../R/pco",
   min_peaks       = 2
 )
 
@@ -184,7 +183,6 @@ res_genome <- cacti_run_genome(
   chrs            = "chr5",                 # toy example: one chromosome
   qtl_files       = qtl_file,
   out_prefix      = out_prefix,
-  dir_pco         = "../R/pco",
   file_fdr_out    = file.path(tempdir(), "cacti_fdr_chr5.txt.gz")
 )
 

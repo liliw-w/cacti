@@ -64,7 +64,7 @@
 #'   chr = "chr5",
 #'   qtl_file = qtl_file,
 #'   out_prefix = out_prefix,
-#'   dir_pco = "R/pco",
+#'   dir_pco = system.file("pco", package = "cacti"),
 #'   min_peaks = 2
 #' )
 #' }
@@ -78,7 +78,7 @@ cacti_run_chr <- function(
     chr,
     qtl_file,
     out_prefix,
-    dir_pco = "R/pco",
+    dir_pco = system.file("pco", package = "cacti"),
     min_peaks = 2
 ) {
   suppressPackageStartupMessages(requireNamespace("data.table"))

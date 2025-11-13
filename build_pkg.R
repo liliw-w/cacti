@@ -51,7 +51,7 @@ devtools::build_vignettes()
 
 # build package
 devtools::build()
-devtools::install("/scratch/midway3/liliw1/cacti", build_vignettes = TRUE)
+devtools::install(build_vignettes = TRUE)
 
 
 
