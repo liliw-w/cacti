@@ -1,9 +1,9 @@
 CACTI
 ================
 
-CACTI (**C**hromatin **A**ssociation using **C**ombined **T**raits and
-**I**nterval windows) implements the *peak-window* version of the CACTI
-method for chromatin QTL mapping.
+CACTI (**C**hrom**A**tin quantitative lo**C**i of mul**TI**ple peaks)
+implements the *peak-window* version of the CACTI method for chromatin
+QTL mapping.
 
 The package provides a pipeline to:
 
@@ -196,3 +196,10 @@ res_genome
 - `file_pheno_cov_residual` – residualized phenotype matrix  
 - `file_p_peak_group` – window-level p-value files for all chromosome
 - `file_fdr_out` – combined FDR-added window-level results.
+
+## Citation
+
+If you use the CACTI method, please cite:
+
+Wang, L., & Liu, X. (2025). Improved chromatin QTL mapping with CACTI.
+bioRxiv, 2025-06.
