@@ -4,7 +4,10 @@ QTL Detection
 
 ## Overview
 
-<img src="inst/figures/cacti_overview.png"/>
+<figure>
+<img src="man/figures/cacti_overview.png" alt="CACTI overview" />
+<figcaption aria-hidden="true">CACTI overview</figcaption>
+</figure>
 
 CACTI (**C**hrom**A**tin quantitative lo**C**i of mul**TI**ple peaks)
 implements the *peak-window* version of the CACTI method for chromatin

@@ -5,6 +5,8 @@ Authors@R:
     person("Lili", "Wang", , "liliw1@uchicago.edu", role = c("aut", "cre"))
 Description: Implements the CACTI peak-window method for multi-peak
     chromatin QTL mapping.
+URL: https://github.com/liliw-w/cacti, https://liliw-w.github.io/cacti
+BugReports: https://github.com/liliw-w/cacti/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

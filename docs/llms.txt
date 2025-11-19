@@ -1,72 +1,70 @@
----
-title: "CACTI: Leveraging Correlated Regulatory Elements for Powerful Chromatin QTL Detection"
-output: github_document
----
-
-```{r, include=FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+CACTI: Leveraging Correlated Regulatory Elements for Powerful Chromatin
+QTL Detection ================
 
 ## Overview
 
-![CACTI overview](man/figures/cacti_overview.png)
+![CACTI overview](reference/figures/cacti_overview.png)
 
-CACTI (**C**hrom**A**tin quantitative lo**C**i of mul**TI**ple peaks) implements the *peak-window* version of the CACTI method for chromatin QTL mapping.
+CACTI overview
+
+CACTI (**C**hrom**A**tin quantitative lo**C**i of mul**TI**ple peaks)
+implements the *peak-window* version of the CACTI method for chromatin
+QTL mapping.
 
 The package provides a pipeline to:
 
-- group nearby peaks into **non-overlapping windows** of fixed genomic size,
+- group nearby peaks into **non-overlapping windows** of fixed genomic
+  size,
 - residualize peak intensities with respect to covariates,
-- run **multi-peak** association tests using a principal-component omnibus (PCO) test, and
+- run **multi-peak** association tests using a principal-component
+  omnibus (PCO) test, and
 - aggregate results across chromosomes and compute **window-level FDR**.
 
----
+------------------------------------------------------------------------
 
 ## Installation
 
-```r
+``` r
 install.packages("devtools")   # if not installed yet
 devtools::install_github("liliw-w/cacti", build_vignettes = TRUE)
 ```
 
 After installation:
 
-```r
+``` r
 library(cacti)
 ```
 
----
+------------------------------------------------------------------------
 
 ## Usage
 
 After installing the package, see:
 
-- The vignette **"CACTI peak-window pipeline"** that gives a more detailed walk through of inputs, outputs, and example usage.
+- The vignette **“CACTI peak-window pipeline”** that gives a more
+  detailed walk through of inputs, outputs, and example usage.
 
-```r
+``` r
 vignette("cacti_peak_window", package = "cacti")
 ```
 
 - Main functions documentation -
 
-```r
+``` r
 ?cacti
 ?cacti_run_chr
 ?cacti_run_genome
 ?cacti_add_fdr
 ```
 
-
----
+------------------------------------------------------------------------
 
 ## Bundled example data
 
-The package includes a small toy dataset derived from Aracena et al. to demonstrate the pipeline:
+The package includes a small toy dataset derived from Aracena et al. to
+demonstrate the pipeline:
 
-```text
+``` text
 inst/extdata/
   test_pheno_meta.bed
   test_pheno.txt
@@ -74,9 +72,10 @@ inst/extdata/
   test_qtl_sum_stats_chr5.txt.gz
 ```
 
-You can access these files using `system.file()`:
+You can access these files using
+[`system.file()`](https://rdrr.io/r/base/system.file.html):
 
-```{r example-paths, eval=FALSE}
+``` r
 file_pheno_meta <- system.file("extdata", "test_pheno_meta.bed", package = "cacti")
 
 file_pheno <- system.file("extdata", "test_pheno.txt", package = "cacti")
@@ -86,7 +85,7 @@ file_cov <- system.file("extdata", "test_covariates.txt", package = "cacti")
 qtl_file <- system.file("extdata", "test_qtl_sum_stats_chr5.txt.gz", package = "cacti")
 ```
 
----
+------------------------------------------------------------------------
 
 ## Input file formats
 
@@ -96,7 +95,7 @@ A BED-like table describing peaks:
 
 - Example: `test_pheno_meta.bed`
 - Required columns:
-  - `phe_chr`: chromosome (e.g. `"chr5"`)
+  - `phe_chr`: chromosome (e.g. `"chr5"`)
   - `phe_from`: peak start (integer, `< phe_to`)
   - `phe_to`: peak end (integer)
   - `phe_id`: peak identifier (unique)
@@ -131,13 +130,14 @@ cis-QTL summary statistics per chromosome:
   - `var_id`: variant ID
   - `z`: z-score for the peak–SNP association
 
----
+------------------------------------------------------------------------
 
 ## Quick start: single-chromosome pipeline (`cacti_run_chr()`)
 
-`cacti_run_chr()` runs the full peak-window pipeline for **one chromosome**:
+[`cacti_run_chr()`](https://liliw-w.github.io/cacti/reference/cacti_run_chr.md)
+runs the full peak-window pipeline for **one chromosome**:
 
-```{r example-run-chr, eval=FALSE}
+``` r
 out_prefix <- tempfile("cacti_chr5_")
 
 res_single_chr <- cacti_run_chr(
@@ -156,26 +156,29 @@ res_single_chr
 
 This will:
 
-1. Group peaks into non-overlapping windows (50 kb).  
-2. Residualize the phenotype matrix with respect to covariates.  
-3. Run CACTI association tests on chr5.  
+1.  Group peaks into non-overlapping windows (50 kb).  
+2.  Residualize the phenotype matrix with respect to covariates.  
+3.  Run CACTI association tests on chr5.
 
 `res_single_chr` is a list containing the paths to:
 
 - `file_peak_group` – window-level group table  
 - `file_peak_group_peaklevel` – peak-level group assignment  
 - `file_pheno_cov_residual` – residualized phenotype matrix  
-- `file_p_peak_group` – window-level p-values for chr5  
+- `file_p_peak_group` – window-level p-values for chr5
 
----
+------------------------------------------------------------------------
 
 ## Quick start: genome-wide wrapper (`cacti_run_genome()`)
 
-`cacti_run_genome()` loops over chromosomes, runs `cacti_run_chr()` for each, and then combines results to compute window-level FDR.
+[`cacti_run_genome()`](https://liliw-w.github.io/cacti/reference/cacti_run_genome.md)
+loops over chromosomes, runs
+[`cacti_run_chr()`](https://liliw-w.github.io/cacti/reference/cacti_run_chr.md)
+for each, and then combines results to compute window-level FDR.
 
 For the toy data, we only have chr5, but the usage pattern is the same:
 
-```{r example-run-genome, eval=FALSE}
+``` r
 out_prefix <- tempfile("cacti_genome_")
 
 res_genome <- cacti_run_genome(
@@ -200,9 +203,42 @@ res_genome
 - `file_p_peak_group` – window-level p-value files for all chromosome
 - `file_fdr_out` – combined FDR-added window-level results.
 
-
 ## Citation
 
 If you use the CACTI method, please cite:
 
-> Wang, L., & Liu, X. (2025). Improved chromatin QTL mapping with CACTI. bioRxiv, 2025-06.
+> Wang, L., & Liu, X. (2025). Improved chromatin QTL mapping with CACTI.
+> bioRxiv, 2025-06.
+
+# Package index
+
+## Overview
+
+- [`cacti-package`](https://liliw-w.github.io/cacti/reference/cacti.md)
+  [`cacti`](https://liliw-w.github.io/cacti/reference/cacti.md) : CACTI:
+  Chromatin QTL Mapping with Peak Windows
+
+## Main workflows
+
+- [`cacti_run_chr()`](https://liliw-w.github.io/cacti/reference/cacti_run_chr.md)
+  : Run CACTI peak-window pipeline for a single chromosome
+- [`cacti_run_genome()`](https://liliw-w.github.io/cacti/reference/cacti_run_genome.md)
+  : Run CACTI peak-window pipeline genome-wide and add FDR
+
+## Building blocks
+
+- [`cacti_group_peak_window()`](https://liliw-w.github.io/cacti/reference/cacti_group_peak_window.md)
+  : Group adjacent peaks by non-overlapping windows
+- [`cacti_pheno_cov_residual()`](https://liliw-w.github.io/cacti/reference/cacti_pheno_cov_residual.md)
+  : Residualize peak intensity with covariates
+- [`cacti_cal_p()`](https://liliw-w.github.io/cacti/reference/cacti_cal_p.md)
+  : Run CACTI association test for a single chromosome
+- [`cacti_add_fdr()`](https://liliw-w.github.io/cacti/reference/cacti_add_fdr.md)
+  : Add FDR (q-values) to per-window top hits across chromosomes
+
+# Articles
+
+### CACTI peak-window pipeline
+
+- [CACTI peak-window
+  pipeline](https://liliw-w.github.io/cacti/articles/cacti_peak_window.md):
