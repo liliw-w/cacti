@@ -3,10 +3,7 @@
 
 ## Overview
 
-<figure>
-<img src="man/figures/cacti_overview.png" alt="CACTI overview" />
-<figcaption aria-hidden="true">CACTI overview</figcaption>
-</figure>
+<img src="man/figures/cacti_overview.png" width="2055" />
 
 CACTI (**C**hrom**A**tin quantitative lo**C**i of mul**TI**ple peaks)
 implements the *peak-window* version of the CACTI method for chromatin
